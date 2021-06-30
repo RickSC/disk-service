@@ -90,8 +90,8 @@ If you are using the virt.yaml example file, ensure you have the correct image, 
     image: registry:5000/quay.io/kubevirt/fedora-cloud-container-disk-demo:v0.42.1 
   name: containerdisk
 - networkVolume:
-    uri: nbd://diskservice/virtio-container-disk.qcow2
-    format: qcow2
+    uri: nbd://diskservice/virtio-container-disk.iso
+    format: raw
   name: cdromcontainerdisk
 ```
 
