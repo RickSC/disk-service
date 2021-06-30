@@ -1,0 +1,46 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstance
+metadata:
+  labels:
+    special: vmi-fedora
+  name: vmi-fedora
+spec:
+  domain:
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: containerdisk
+      - disk:
+          bus: virtio
+        name: cloudinitdisk
+      - cdrom:
+          bus: sata
+        name: cdromcontainerdisk
+      interfaces:
+        - name: default
+          masquerade: {}
+      rng: {}
+    machine:
+      type: ""
+    resources:
+      requests:
+        memory: 1024M
+  networks:
+  - name: default
+    pod: {} # Stock pod network
+  terminationGracePeriodSeconds: 0
+  volumes:
+  - containerDisk:
+      image: registry:5000/quay.io/kubevirt/fedora-cloud-container-disk-demo:devel
+    name: containerdisk
+  - networkVolume:
+      uri: nbd://diskservice/virtio-container-disk.qcow2
+      format: qcow2
+    name: cdromcontainerdisk
+  - cloudInitNoCloud:
+      userData: |-
+        #cloud-config
+        password: fedora
+        chpasswd: { expire: False }
+    name: cloudinitdisk
