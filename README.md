@@ -21,7 +21,7 @@ This scripts creates a Dockerfile, a service.yaml file, and builds/pushes the di
 
 The script uses a number of environmental variables. These variables can be set by the user to fit their system. The environmental variables are DOCKER_PREFIX, DOCKER_TAG, and IMAGE_NAME.
 * DOCKER_PREFIX can be set to the repo name (quay.io, dockerhub, etc.).
-* DOCKER_TAG is the image tage.
+* DOCKER_TAG is the image tag.
 * IMAGE_NAME is the name of the image within the repo.
 
 #### Running the Script
@@ -43,7 +43,7 @@ kubectl apply -f path/to/service.yaml
 
 ### Requirements
 
-This example requires [Kubevirt - network-volume](https://github.com/RickSC/kubevirt/tree/network-volume) to work correctly. Before attempting to use this example, ensure the repository has been downloaded and you have run the following commands:
+This example requires [Kubevirt - network-volume](https://github.com/RickSC/kubevirt/tree/network-volume) branch to work correctly. Before attempting to use this example, ensure the branch has been downloaded and you have run the following commands:
 ```
 make cluster generate
 make cluster sync
