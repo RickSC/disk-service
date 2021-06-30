@@ -13,7 +13,18 @@ A service to provide ISOs to multiple VMs simultaneously.
 
 ### Operation
 
+#### Description
+
 This scripts creates a Dockerfile, a service.yaml file, and builds/pushes the diskservice image. If any file named "Dockerfile" or "service.yaml" exists in the same directory, they will be deleted before the script creates its own files.
+
+#### Envrionmental Variables
+
+The script uses a number of environmental variables. These variables can be set by the user to fit their system. The environmental variables are DOCKER_PREFIX, DOCKER_TAG, and IMAGE_NAME.
+* DOCKER_PREFIX can be set to the repo name (quay.io, dockerhub, etc.).
+* DOCKER_TAG is the image tage.
+* IMAGE_NAME is the name of the image within the repo.
+
+#### Running the Script
 
 * To run the script, use a command formatted like the example below.
   * Multiple images can be accepted with this command.
@@ -23,7 +34,7 @@ This scripts creates a Dockerfile, a service.yaml file, and builds/pushes the di
 ``` 
 * Run service.yaml using the example below.
 ```
-./cluster-up/kubectl.sh apply -f path/to/service.yaml
+kubectl apply -f path/to/service.yaml
 
 ```
 * The disk-service should now be running.
@@ -49,17 +60,17 @@ The following example runs build-diskservice.bash, starts the service, and creat
 ```
 * Start service.yaml.
 ```
-./cluster-up/kubectl.sh apply -f path/to/service.yaml
+kubectl apply -f path/to/service.yaml
 
 ```
 * Start virt.yaml.
 ```
-kube apply -f path/to/virt.yaml
+kubectl apply -f path/to/virt.yaml
 
 ```
 * VNC to the VM.
 ```
-./cluster-up/virtctl.sh vnc vmi-fedora
+virtctl vnc vmi-fedora
 
 ```
 * Login to the VM.
