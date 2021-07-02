@@ -28,12 +28,12 @@ The script uses a number of environmental variables. These variables can be set 
 
 * To run the script, use a command formatted like the example below.
   * Multiple images can be accepted with this command.
-```
+```bash
 ./build-diskservice.bash <DOCKER_PREFIX>/<IMAGE_NAME>:DOCKER:TAG
 
 ``` 
 * Run service.yaml using the example below.
-```
+```bash
 kubectl apply -f path/to/service.yaml
 
 ```
@@ -44,7 +44,7 @@ kubectl apply -f path/to/service.yaml
 ### Requirements
 
 This example requires [Kubevirt - network-volume](https://github.com/RickSC/kubevirt/tree/network-volume) branch to work correctly. Before attempting to use this example, ensure the branch has been downloaded and you have run the following commands:
-```
+```bash
 make cluster generate
 make cluster sync
 ```
@@ -54,22 +54,22 @@ make cluster sync
 The following example runs build-diskservice.bash, starts the service, and creates a virtual machine to access the service.
 
 * Run build-diskservice.bash.
-```
+```bash
 ./build-test.bash quay.io/kubevirt/virtio-container-disk:v0.42.1 quay.io/kubevirt/fedora-cloud-container-disk-demo:v0.42.1 quay.io/kubevirt/alpine-container-disk-demo:v0.42.1
 
 ```
 * Start service.yaml.
-```
+```bash
 kubectl apply -f path/to/service.yaml
 
 ```
 * Start virt.yaml.
-```
+```bash
 kubectl apply -f path/to/virt.yaml
 
 ```
 * VNC to the VM.
-```
+```bash
 virtctl vnc vmi-fedora
 
 ```
@@ -79,15 +79,15 @@ User: fedora
 Pass: fedora
 ```
 * Make directory.
-```
+```bash
 sudo mkdir /mnt/cdrom
 ```
 * Mount.
-```
+```bash
 sudo mount /dev/sr0 /mnt/cdrom
 ```
 * Change directory.
-```
+```bash
 cd /mnt/cdrom
 ```
 * Check contents to verify successful mount.
@@ -96,7 +96,7 @@ cd /mnt/cdrom
 
 If you are using the virt.yaml example file, ensure you have the correct image, uri, and format.
 
-```
+```yaml
 - containerDisk:
     image: registry:5000/quay.io/kubevirt/fedora-cloud-container-disk-demo:v0.42.1 
   name: containerdisk
