@@ -5,6 +5,11 @@ DOCKER_PREFIX=${DOCKER_PREFIX:-registry:5000}
 IMAGE_NAME=${IMAGE_NAME:-disk-service}
 delim=/
 delim2=:
+fileservice="service.yaml"
+filedocker="Dockerfile"
+
+rm -f $fileservice
+rm -f $filedocker
 
 cat <<EOF >> Dockerfile
 FROM registry.fedoraproject.org/fedora-minimal:34
